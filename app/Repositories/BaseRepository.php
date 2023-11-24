@@ -23,22 +23,27 @@ class BaseRepository
         return $this->model->find($id);
     }
 
-    public function store($data){
+    public function store($data)
+    {
         $new = new $this->model();
         $new->fill($data);
         $new->save();
         return $new;
     }
 
-    public function update($model,$data){
-         $model->update($data);
-         return $model;
+    public function update($model, $data)
+    {
+        $model->update($data);
+        return $model;
     }
 
-    public function delete($model){
-        $model->delete();
-        $model->save();
+    public function delete($model)
+    {
+        try {
+            $model->delete();
+        } catch (\Exception $e) {
+            return response()->json($e);
+        }
         return response()->json('Deleted successfully');
     }
-
 }

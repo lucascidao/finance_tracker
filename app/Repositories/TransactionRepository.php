@@ -12,4 +12,14 @@ class TransactionRepository extends BaseRepository
         parent::__construct($transaction);
     }
 
+    public function listIncome()
+    {
+        return $this->model->where('type', 'income')->get();
+    }
+
+    public function listExpense()
+    {
+        return $this->model->where('type', 'expense')->get();
+    }
+
 }

@@ -5,6 +5,13 @@ import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
+import VueGoodTablePlugin from 'vue-good-table-next';
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
+
+// import the styles 
+import 'vue-good-table-next/dist/vue-good-table-next.css'
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -15,6 +22,8 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue, Ziggy)
+            .use(VueGoodTablePlugin)
+            .use(VueAxios, axios)
             .mount(el);
     },
     progress: {

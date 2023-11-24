@@ -12,8 +12,11 @@ class TransactionsController extends Controller
     {
         $this->transactionsRepository = $transactionRepository;
     }
-    public function index(){
-        return $this->transactionsRepository->list();
+    public function indexIncome(){
+        return $this->transactionsRepository->listIncome();
+    }
+    public function indexExpense(){
+        return $this->transactionsRepository->listExpense();
     }
     public function store(Request $request){
         return $this->transactionsRepository->store($request->all());
@@ -23,6 +26,7 @@ class TransactionsController extends Controller
         return $this->transactionsRepository->delete($transaction);
     }
     public function update(Request $request,$id){
-        return $this->transactionsRepository->update($request->all(),$id);
+        $transaction = $this->transactionsRepository->find($id);
+        return $this->transactionsRepository->update($transaction,$request->all());
     }
 }
