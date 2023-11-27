@@ -18,8 +18,11 @@
         "vue": "^3.2.41"
     },
     "dependencies": {
+        "chart.js": "^4.4.0",
         "vue-axios": "^3.5.2",
+        "vue-chartjs": "^5.2.0",
         "vue-good-table": "^2.21.11",
-        "vue-good-table-next": "^0.2.1"
+        "vue-good-table-next": "^0.2.1",
+        "vue-material-design-icons": "^5.2.0"
     }
 }

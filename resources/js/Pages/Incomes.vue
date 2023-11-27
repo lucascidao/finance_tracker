@@ -16,16 +16,33 @@ import { ref } from 'vue';
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Incomes</h2>
         </template>
-        <div class="container mx-auto mt-10 ">
-            <vue-good-table :columns="columns" :rows="rows" theme="nocturnal">
+        <div class="container mx-auto mt-10 pb-10">
+            <vue-good-table :columns="columns" :rows="rows" theme="nocturnal" :pagination-options="{
+                enabled: true,
+                mode: 'records',
+                perPage: 5,
+                position: 'top',
+                perPageDropdown: [3, 7, 9],
+                dropdownAllowAll: false,
+                setCurrentPage: 2,
+                nextLabel: 'next',
+                prevLabel: 'prev',
+                rowsPerPageLabel: 'Rows per page',
+                ofLabel: 'of',
+                pageLabel: 'page', // for 'pages' mode
+                allLabel: 'All',
+                infoFn: (params) => `Page ${params.firstRecordOnPage}`,
+            }">
                 <template #table-actions>
-                    <!-- <button class="btn btn-blue mr-2">Add Income</button> -->
                     <SecondaryButton @click="showModal" class="mr-2">Add Income</SecondaryButton>
                 </template>
                 <template #table-row="props">
                     <span v-if="props.column.field == 'btn'">
-                        <SecondaryButton @click="showModal(props.row)" class="mr-2">Edit</SecondaryButton>
-                        <SecondaryButton @click="showDelete(props.row.id)" class="mr-2">Delete</SecondaryButton>
+                        <div class="grid px-4">
+                            <SecondaryButton @click="showModal(props.row)" class="mr-2">Edit</SecondaryButton>
+                            <SecondaryButton @click="showDelete(props.row.id)" class="mr-2 mt-2">Delete</SecondaryButton>
+
+                        </div>
                     </span>
                 </template>
             </vue-good-table>
@@ -72,7 +89,7 @@ import { ref } from 'vue';
                     </div>
 
                     <div class="w-50 grid grid-cols-2 gap-2 pt-4">
-                        <PrimaryButton  @click.prevent="onSubmit">Save</PrimaryButton>
+                        <PrimaryButton @click.prevent="onSubmit">Save</PrimaryButton>
                         <SecondaryButton type="reset">Reset</SecondaryButton>
                     </div>
 
@@ -138,6 +155,7 @@ export default {
                 {
                     label: 'Actions',
                     field: 'btn',
+                    sortable: false,
                 }
 
                 // Add more columns as needed
@@ -166,7 +184,7 @@ export default {
             let url;
             if (this.form.amount != '' && this.form.type != '') {
                 if (this.id != null) {
-                     url = 'http://localhost:80/api/transaction/update/' + this.id
+                    url = 'http://localhost:80/api/transaction/update/' + this.id
                 }
                 else {
                     url = 'http://localhost:80/api/transaction/store/'

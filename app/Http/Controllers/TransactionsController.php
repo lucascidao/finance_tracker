@@ -29,4 +29,12 @@ class TransactionsController extends Controller
         $transaction = $this->transactionsRepository->find($id);
         return $this->transactionsRepository->update($transaction,$request->all());
     }
+
+    public function expenseData(){
+        return $this->transactionsRepository->expensesSum();
+    }
+
+    public function transactionByMonth(){
+        return $this->transactionsRepository->transactionByMonth();
+    }
 }
