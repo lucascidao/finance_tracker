@@ -14,8 +14,9 @@ import VueAxios from 'vue-axios'
 import 'vue-good-table-next/dist/vue-good-table-next.css'
 
 
-
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+
+
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,

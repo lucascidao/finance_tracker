@@ -15,16 +15,22 @@ import { Head } from '@inertiajs/vue3';
             <div class="grid grid-cols-3 gap-0 col-auto justify-items-end">
                 <!-- card -->
                 <div class="max-w-4xl ml-2 mt-10 relative">
-                    <div class="absolute sm:rounded-lg w-14 h-14 bg-white -mt-6 ml-4 "></div>
+                    <div class="absolute sm:rounded-lg w-14 h-14 bg-white -mt-6 ml-4 "> 
+                        <currency-dollar-icon class="icon  text-slate-800"/>
+
+                    </div>
                     <div class="bg-white  dark:bg-gray-800 w-80 h-40 sm:rounded-lg p-10 text-xl  text-white">
                         Total
+
                         <div class="relative mt-10 font-extrabold">$ {{ total }}</div>
                     </div>
                 </div>
                 <!-- end card -->
                 <!-- card -->
                 <div class="max-w-4xl ml-2 mt-10 relative">
-                    <div class="absolute sm:rounded-lg w-14 h-14 bg-white -mt-6 ml-4 "></div>
+                    <div class="absolute sm:rounded-lg w-14 h-14 bg-white -mt-6 ml-4 ">
+                        <banknotes-icon class="icon bg text-slate-800 "/>
+                    </div>
                     <div class="bg-white  dark:bg-gray-800 w-80 h-40 sm:rounded-lg p-10 text-xl  text-white">
                         Total Incomes
                         <div class="relative mt-10 font-extrabold">$ {{ incomes }}</div>
@@ -33,7 +39,9 @@ import { Head } from '@inertiajs/vue3';
                 <!-- end card -->
                 <!-- card -->
                 <div class="max-w-4xl ml-2 mt-10 relative">
-                    <div class="absolute sm:rounded-lg w-14 h-14 bg-white -mt-6 ml-4 "></div>
+                    <div class="absolute sm:rounded-lg w-14 h-14 bg-white -mt-6 ml-4 ">
+                        <credit-card-icon class="icon  text-slate-800"/>
+                    </div>
                     <div class="bg-white  dark:bg-gray-800 w-80 h-40 sm:rounded-lg p-10 text-xl text-white">
                         Total Expenses
                         <div class="relative mt-10 font-extrabold">$ {{ expenses }}</div>
@@ -52,10 +60,14 @@ import { Head } from '@inertiajs/vue3';
 <script>
 
 import BarChart from "@/Components/BarChart.vue";
+import { CurrencyDollarIcon, CreditCardIcon, BanknotesIcon } from '@heroicons/vue/24/solid';
 
 
 export default {
-    components: { BarChart },
+    components: {
+        BarChart,
+        CurrencyDollarIcon, CreditCardIcon ,BanknotesIcon
+    },
 
     data() {
         return {

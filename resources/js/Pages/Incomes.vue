@@ -1,5 +1,6 @@
 <script setup>
 import Modal from '@/Components/Modal.vue';
+import Loading from '@/Components/Loading.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
@@ -108,22 +109,15 @@ import { ref } from 'vue';
             </div>
         </Modal>
     </AuthenticatedLayout>
+    <loading :isLoading="isLoading" :loadingText="loadingText" />
 </template>
 
 <script>
 import { VueGoodTable } from 'vue-good-table-next';
 
+
 const showingAdd = ref(false);
 const deletingShow = ref(false);
-// const showAdd = ($data) => {
-//     showingAdd.value = true;
-//     // nextTick(() => passwordInput.value.focus());
-// };
-
-// const closeAdd = () => {
-//     showingAdd.value = false;
-// };
-
 
 export default {
     components: {
@@ -131,6 +125,8 @@ export default {
     },
     data() {
         return {
+            isLoading: false,
+            loadingText: "Fetching data...",
             columns: [
                 {
                     label: 'ID',
@@ -176,8 +172,13 @@ export default {
     },
     methods: {
         fetchDataFromAPI() {
+            this.isLoading = true;
             this.axios.get('http://localhost:80/api/transaction/indexIncome').then(response => {
                 this.rows = response.data;
+                setTimeout(() => {
+                    this.isLoading = false;
+                }, 500);
+
             })
         },
         onSubmit() {
