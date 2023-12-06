@@ -34,11 +34,30 @@ class TransactionRepository extends BaseRepository
         ]);
     }
 
+    public function expensesSumLastMonths()
+    {
+        $expense =  $this->model->where('type', 'expense')
+        ->selectRaw('MONTH(created_at) as month, SUM(amount) as amount')
+        ->where('created_at', '>=', now()->subMonths(3))
+        ->groupByRaw('MONTH(created_at)')->get();
+
+        $income =  $this->model->where('type', 'income')
+        ->selectRaw('MONTH(created_at) as month, SUM(amount) as amount')
+        ->where('created_at', '>=', now()->subMonths(3))
+        ->groupByRaw('MONTH(created_at)')->get();
+        
+        return response()->json([
+            'expense' => $expense,
+            'income' => $income,
+        ]);
+    }
+
     public function transactionByMonth()
     {
         $lastYear = now()->year; // Get the year for the last year
 
-        return $this->model->select(DB::raw('YEAR(transaction_date) as year'), DB::raw('MONTH(transaction_date) as month'), DB::raw('count(*) as total'))
+        return $this->model->
+        select(DB::raw('YEAR(transaction_date) as year'), DB::raw('MONTH(transaction_date) as month'), DB::raw('count(*) as total'))
         ->whereYear('transaction_date', $lastYear)    
         ->groupBy('year', 'month')
             ->get();

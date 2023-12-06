@@ -37,4 +37,7 @@ class TransactionsController extends Controller
     public function transactionByMonth(){
         return $this->transactionsRepository->transactionByMonth();
     }
+    public function transactionsLastMonths(){
+        return $this->transactionsRepository->expensesSumLastMonths();
+    }
 }

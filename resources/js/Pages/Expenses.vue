@@ -108,7 +108,6 @@ import { ref } from 'vue';
         </Modal>
     </AuthenticatedLayout>
     <loading :isLoading="isLoading" :loadingText="loadingText" />
-
 </template>
 
 <script>

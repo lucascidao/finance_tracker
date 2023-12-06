@@ -28,6 +28,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         Route::delete('/{id}', [TransactionsController::class, 'delete']);
         Route::get('/expenseData', [TransactionsController::class, 'expenseData']);
         Route::get('/transactionByMonth', [TransactionsController::class, 'transactionByMonth']);
+        Route::get('/lastMonths', [TransactionsController::class, 'transactionsLastMonths']);
 
         // Route::get('/show/{id}', [TransactionsController::class, 'show']);
 });

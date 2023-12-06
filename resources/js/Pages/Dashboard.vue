@@ -50,8 +50,15 @@ import { Head } from '@inertiajs/vue3';
                 </div>
                 <!-- end card -->
             </div>
-            <div class="container bg-slate-800  mt-40">
+            <div class="container grid grid-cols-2 gap-2">
+                <div class="container bg-slate-800 grid grid-cols-2 mt-40 ml-20">
+                <BarChart>Chart couldn't be loaded.</BarChart>
             </div>
+            <div class="container bg-slate-800 grid grid-cols-2 mt-40 ml-20">
+                <!-- <BarChart>Chart couldn't be loaded.</BarChart> -->
+            </div>
+            </div>
+        
         </div>
 
     </AuthenticatedLayout>
