@@ -18,7 +18,8 @@ import { ref } from 'vue';
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Incomes</h2>
         </template>
         <div class="container mx-auto mt-10 pb-10">
-            <vue-good-table :columns="columns" :rows="rows" theme="nocturnal" :pagination-options="{
+            <vue-good-table :columns="columns" :rows="rows" theme="nocturnal" 
+            :pagination-options="{
                 enabled: true,
                 mode: 'records',
                 perPage: 5,
@@ -33,12 +34,21 @@ import { ref } from 'vue';
                 pageLabel: 'page', // for 'pages' mode
                 allLabel: 'All',
                 infoFn: (params) => `Page ${params.firstRecordOnPage}`,
-            }">
+            }" 
+            :search-options="{
+                enabled: true,
+                trigger: 'enter',
+                skipDiacritics: true,
+                searchFn: mySearchFn,
+                placeholder: 'Search this table',
+                externalQuery: searchQuery,
+                 }"
+                >
                 <template #table-actions>
-                    <SecondaryButton @click="showModal" class="mr-2">Add Income</SecondaryButton>
+                    <SecondaryButton @click=" showModal " class="mr-2">Add Income</SecondaryButton>
                 </template>
                 <template #table-row="props">
-                    <span v-if="props.column.field == 'btn'">
+                    <span v-if=" props.column.field == 'btn' ">
                         <div class="grid px-4">
                             <SecondaryButton @click="showModal(props.row)" class="mr-2">Edit</SecondaryButton>
                             <SecondaryButton @click="showDelete(props.row.id)" class="mr-2 mt-2">Delete</SecondaryButton>
@@ -48,7 +58,7 @@ import { ref } from 'vue';
                 </template>
             </vue-good-table>
         </div>
-        <Modal :show="showingAdd" @close="closeAdd">
+        <Modal :show=" showingAdd " @close=" closeAdd ">
             <form class="w-full p-4 container mx-auto">
                 <div class="flex flex-wrap -mx-3 mb-6">
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -57,7 +67,7 @@ import { ref } from 'vue';
                         </label>
                         <input
                             class="appearance-none block w-full bg-gray-700 text-white border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none "
-                            id="amount" type="number" placeholder="$" v-model="form.amount">
+                            id="amount" type="number" placeholder="$" v-model=" form.amount ">
                         <p class="text-red-500 text-xs italic">Please fill out this field.</p>
                     </div>
                     <div class="w-full md:w-1/2 px-3">
@@ -66,7 +76,7 @@ import { ref } from 'vue';
                         </label>
                         <input
                             class="appearance-none block w-full bg-gray-700 text-white border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500"
-                            id="type" type="text" v-model="form.category" placeholder="groceries">
+                            id="type" type="text" v-model=" form.category " placeholder="groceries">
                     </div>
                 </div>
                 <div class="flex flex-wrap -mx-3 mb-6">
@@ -76,7 +86,7 @@ import { ref } from 'vue';
                         </label>
                         <input
                             class="appearance-none block w-full bg-gray-700 text-white border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none  focus:border-gray-500"
-                            id="description" type="text" v-model="form.description" placeholder="Income Description">
+                            id="description" type="text" v-model=" form.description " placeholder="Income Description">
                     </div>
                 </div>
                 <div class="flex flex-wrap -mx-3 mb-2">
@@ -86,11 +96,11 @@ import { ref } from 'vue';
                         </label>
                         <input
                             class="appearance-none block w-full bg-gray-700 text-white border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500"
-                            id="date" type="date" v-model="form.transaction_date">
+                            id="date" type="date" v-model=" form.transaction_date ">
                     </div>
 
                     <div class="w-50 grid grid-cols-2 gap-2 pt-4">
-                        <PrimaryButton @click.prevent="onSubmit">Save</PrimaryButton>
+                        <PrimaryButton @click.prevent=" onSubmit ">Save</PrimaryButton>
                         <SecondaryButton type="reset">Reset</SecondaryButton>
                     </div>
 
@@ -98,18 +108,18 @@ import { ref } from 'vue';
                 </div>
             </form>
         </Modal>
-        <Modal :show="deletingShow" @close="closeDelete">
+        <Modal :show=" deletingShow " @close=" closeDelete ">
             <div class="w-full p-4 container mx-auto grid grid-cols-1">
                 <span class="text-md text-white font-bold mb-5">Do you want to delete the data?</span>
                 <div class="grid grid-cols-2 ">
-                    <SecondaryButton @click="onDelete" class="mr-2">Confirm</SecondaryButton>
-                    <SecondaryButton @click="closeDelete" class="mr-2">Cancel </SecondaryButton>
+                    <SecondaryButton @click=" onDelete " class="mr-2">Confirm</SecondaryButton>
+                    <SecondaryButton @click=" closeDelete " class="mr-2">Cancel </SecondaryButton>
 
                 </div>
             </div>
         </Modal>
     </AuthenticatedLayout>
-    <loading :isLoading="isLoading" :loadingText="loadingText" />
+    <loading :isLoading=" isLoading " :loadingText=" loadingText " />
 </template>
 
 <script>

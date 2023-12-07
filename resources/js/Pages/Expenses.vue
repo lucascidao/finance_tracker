@@ -33,7 +33,16 @@ import { ref } from 'vue';
                 pageLabel: 'page', // for 'pages' mode
                 allLabel: 'All',
                 infoFn: (params) => `Page ${params.firstRecordOnPage}`
-            }">
+                
+            }"
+            :search-options="{
+                enabled: true,
+                trigger: 'enter',
+                skipDiacritics: true,
+                searchFn: mySearchFn,
+                placeholder: 'Search this table',
+                externalQuery: searchQuery,}"
+            >
                 <template #table-actions>
                     <!-- <button class="btn btn-blue mr-2">Add Income</button> -->
                     <SecondaryButton @click="showModal" class="mr-2">Add Expense</SecondaryButton>
