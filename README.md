@@ -2,8 +2,8 @@
 ## Finance Tracker
 
 Project to study laravel and vue, making a financial tracker for personal use, including login, crud, dashboard. <br />
-Laravel and Mysql for the backend. <br/>
-Vue.Js with TailwindCSS for the fronten <br />
+Laravel and Mysql for the backend. Using SOLID, validations and tests. <br/>
+Vue.Js with TailwindCSS for the frontend <br />
 
 
 ## How to install
