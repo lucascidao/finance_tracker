@@ -7,7 +7,7 @@ Vue.Js with TailwindCSS for the frontend <br />
 
 
 ## How to install
-
+ Run composer install to install the packages
 -> .vendor/bin/sail up <br />
 -> .vendor/bin/sail artisan migrate <br />
 -> .vendor/bin/sail artisan db:seed <br />
